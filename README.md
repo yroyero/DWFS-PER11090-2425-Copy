@@ -1,6 +1,7 @@
 # Máster Universitario en Ingeniería de Software y Sistemas Informáticos
 ## Asignatura Desarrollo Web: Full Stack
-### Profesor: [D. Jesús Pérez Melero](https://www.linkedin.com/in/jesusperezmelero/)
+### Profesor Impartidor (Clases, ejercicios opcionales y examen): [D. Jesús Pérez Melero](https://www.linkedin.com/in/jesusperezmelero/)
+### Profesor Corrector (Actividades puntuables): [D. Francisco Javier Mora Alcázar](https://es.linkedin.com/in/javiermoraalcazar/)
 ### PER 11090 - [Código de apoyo y ejercicios](https://github.com/UnirCs/DWFS-GLOBAL).
 
 
