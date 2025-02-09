@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class NotFoudException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
 
     private static final int code = 404;
 
-    public NotFoudException(String message) {
+    public NotFoundException(String message) {
         super(message);
     }
 

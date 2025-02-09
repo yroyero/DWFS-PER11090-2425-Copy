@@ -94,6 +94,28 @@ public class OperacionResource {
     }
 
     @Operation(
+            operationId = "Obtener una suma ",
+            description = "Operación de lectura",
+            summary = "Se obtiene el resultado de una suma por su identificador."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperacionDTO.class))
+    )
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"),
+            description = "No se ha encontrado la suma con el identificador indicado."
+    )
+    @GetMapping("/sumas/{id}")
+    public ResponseEntity<OperacionDTO> getSuma(@PathVariable Long id) {
+        log.info("Request to get suma by id: {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.SUMAR);
+        return ResponseEntity.ok().body(result);
+    }
+
+
+    @Operation(
             operationId = "Restar números",
             description = "Operación de escritura",
             summary = "Se restan los N números proporcionados en la lista.",
@@ -159,9 +181,9 @@ public class OperacionResource {
     }
 
     @Operation(
-            operationId = "Obtener una operación ",
+            operationId = "Obtener una resta ",
             description = "Operación de lectura",
-            summary = "Se obtiene el resultado de una operacion por su identificador."
+            summary = "Se obtiene el resultado de una resta por su identificador."
     )
     @ApiResponse(
             responseCode = "200",
@@ -170,12 +192,33 @@ public class OperacionResource {
     @ApiResponse(
             responseCode = "404",
             content = @Content(mediaType = "application/json"),
-            description = "No se ha encontrado la operación con el identificador indicado."
+            description = "No se ha encontrado la resta con el identificador indicado."
     )
-    @GetMapping("/operaciones/{id}")
-    public ResponseEntity<OperacionDTO> getOperacion(@PathVariable Long id) {
-        log.info("Request to getOperacion : {}", id);
-        OperacionDTO result = operacionService.getOperacion(id);
+    @GetMapping("/restas/{id}")
+    public ResponseEntity<OperacionDTO> getResta(@PathVariable Long id) {
+        log.info("Request to get resta by id: {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.RESTAR);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @Operation(
+            operationId = "Obtener una multiplicación ",
+            description = "Operación de lectura",
+            summary = "Se obtiene el resultado de una multiplicación por su identificador."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperacionDTO.class))
+    )
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"),
+            description = "No se ha encontrado la multiplicación con el identificador indicado."
+    )
+    @GetMapping("/multiplicaciones/{id}")
+    public ResponseEntity<OperacionDTO> getMultiplicacion(@PathVariable Long id) {
+        log.info("Request to get multiplicacion : {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.MULTIPLICAR);
         return ResponseEntity.ok().body(result);
     }
 
@@ -316,6 +359,27 @@ public class OperacionResource {
     }
 
     @Operation(
+            operationId = "Obtener una división ",
+            description = "Operación de lectura",
+            summary = "Se obtiene el resultado de una división por su identificador."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperacionDTO.class))
+    )
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"),
+            description = "No se ha encontrado la división con el identificador indicado."
+    )
+    @GetMapping("/divisiones/{id}")
+    public ResponseEntity<OperacionDTO> getDivision(@PathVariable Long id) {
+        log.info("Request to get división : {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.DIVIDIR);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @Operation(
             operationId = "Potencia de un número",
             description = "Operación de escritura",
             summary = "Potencia de un número proporcionado.",
@@ -380,6 +444,27 @@ public class OperacionResource {
             return ResponseEntity.badRequest().build();
         }
         OperacionDTO result = operacionService.multiplos(numeros.getEntrada1(), numeros.getEntrada2(), Constantes.POTENCIA);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @Operation(
+            operationId = "Obtener una potencia ",
+            description = "Operación de lectura",
+            summary = "Se obtiene el resultado de una potencia por su identificador."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperacionDTO.class))
+    )
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"),
+            description = "No se ha encontrado la potencia con el identificador indicado."
+    )
+    @GetMapping("/potencias/{id}")
+    public ResponseEntity<OperacionDTO> getPotencia(@PathVariable Long id) {
+        log.info("Request to get potencia : {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.POTENCIA);
         return ResponseEntity.ok().body(result);
     }
 
@@ -453,4 +538,26 @@ public class OperacionResource {
         OperacionDTO result = operacionService.multiplos(numeros.getEntrada1(), numeros.getEntrada2(), Constantes.RAIZ);
         return ResponseEntity.ok().body(result);
     }
+
+    @Operation(
+            operationId = "Obtener una raiz ",
+            description = "Operación de lectura",
+            summary = "Se obtiene el resultado de una raiz por su identificador."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperacionDTO.class))
+    )
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json"),
+            description = "No se ha encontrado la raiz con el identificador indicado."
+    )
+    @GetMapping("/raices/{id}")
+    public ResponseEntity<OperacionDTO> getRaiz(@PathVariable Long id) {
+        log.info("Request to get raiz : {}", id);
+        OperacionDTO result = operacionService.getOperacion(id, Constantes.POTENCIA);
+        return ResponseEntity.ok().body(result);
+    }
+   
 }

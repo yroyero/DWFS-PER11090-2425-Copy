@@ -9,7 +9,7 @@ import com.unir.calculadora.service.dto.MultiploDTO;
 import com.unir.calculadora.service.dto.NumeroDTO;
 import com.unir.calculadora.service.dto.OperacionDTO;
 import com.unir.calculadora.service.utils.Constantes;
-import com.unir.calculadora.web.rest.exception.NotFoudException;
+import com.unir.calculadora.web.rest.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -50,15 +50,19 @@ public class OperacionServiceImpl implements OperacionService {
         return getOperacionDTO(operacion);
     }
 
-    @Override
+   @Override
     @Transactional(readOnly = true)
-    public OperacionDTO getOperacion(Long id) {
+    public OperacionDTO getOperacion(Long id, String operation) {
         log.info("Request to getOperacion : {}", id);
-        Operacion operacion = operacionRepository.findById(id).orElseThrow(()-> new NotFoudException("Operacion no encontrada"));
-        if(operacion.getOperation().equals(Constantes.SUMAR) || operacion.getOperation().equals(Constantes.RESTAR)) {
+        Operacion operacion = operacionRepository.findById(id).orElseThrow(()-> new NotFoundException("Operacion no encontrada"));
+        if(List.of(Constantes.SUMAR, Constantes.RESTAR).contains(operation) && operacion.getOperation().equals(operation)) {
             return getOperacionDTO(operacion);
+        }else if (List.of(Constantes.MULTIPLICAR, Constantes.DIVIDIR, Constantes.POTENCIA, Constantes.RAIZ).contains(operation)
+                && operacion.getOperation().equals(operation)) {
+            return getMultiploDTO(operacion);
+        }else {
+            throw new NotFoundException("Operacion: "+ operation + " no encontrada con id: " + id);
         }
-        return getMultiploDTO(operacion);
     }
 
     @Override

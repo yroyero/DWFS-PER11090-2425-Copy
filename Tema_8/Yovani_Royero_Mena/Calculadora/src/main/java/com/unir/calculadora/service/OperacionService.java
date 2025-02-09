@@ -8,7 +8,7 @@ public interface OperacionService {
 
     OperacionDTO sumarRestar(List<Long> numeros, String operation);
 
-    OperacionDTO getOperacion(Long id);
+    OperacionDTO getOperacion(Long id, String operation);
 
     OperacionDTO multiplos(Long entrada1, Long entrada2, String operation);
 
